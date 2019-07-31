@@ -21,7 +21,8 @@ for I=1:7
 end
 %Plot final section
 plot3(I1(marker:length(V)),I2(marker:length(V)),V(marker:length(V)),'b')
-
+%Change view
+view(-160.6,9.1)
 %Add axis labels and save plot
 xlabel('I1')
 ylabel('I2')
