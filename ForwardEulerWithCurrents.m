@@ -1,6 +1,6 @@
 function [V,theta,spikes,I1,I2] = ForwardEulerWithCurrents( a, A1, A2, V0, theta0, Iext )
-%FORWARDEULERWITHCURRENTS solves for the membrane potential, threshold
-%potential, and the spike induced currents.
+%FORWARDEULERWITHCURRENTS solves for the membrane potential 'V', threshold
+%potential 'theta', position of the spikes 'spikes', and the internal spike-induced currents 'I1' and 'I2'.
 
 %Parameters
 k1=0.2; k2=0.02;
@@ -31,6 +31,7 @@ theta(1)=theta0;
 I1(1)=0.010;
 I2(1)=0.001;
 
+%Evolve initial conditions.
 for time=1:numtimesteps
     I1(time+1)=I1(time)+dt*(-k1*I1(time));
     I2(time+1)=I2(time)+dt*(-k2*I2(time));
@@ -38,12 +39,12 @@ for time=1:numtimesteps
     theta(time+1)=theta(time)+dt*(a*(V(time)-E)-b*(theta(time)-thetainf));
     
     if V(time+1)>=theta(time+1)
-        %Record position of spike.
+        %Neuron has spiked - record position of spike.
         spikes(count,1)=time*0.00001;
         spikes(count,2)=V(time);
         count=count+1;
         
-        %Update rules.
+        %Update state variables according to update rules.
         V(time+1)=Vr;
         theta(time+1)=max(theta(time+1),thetar);
         I1(time+1)=R1*I1(time+1)+A1;
