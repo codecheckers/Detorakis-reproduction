@@ -197,6 +197,9 @@ t=linspace(0,0.05,5001);
 subplot(5,4,20); plot(t,V,t,theta), hold on, scatter(spikes(:,1),spikes(:,2),8,'k','filled')
 subplot(5,4,20); title('Spike Latency')
 
-%Save Plots
+%Set title
 sgtitle('Example Plots')
+%Change size
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0, 0.04, 1, 0.96]);
+%Save
 saveas(gcf,'ExamplePlots.png')
