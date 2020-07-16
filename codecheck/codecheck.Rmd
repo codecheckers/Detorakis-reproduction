@@ -1,0 +1,135 @@
+---
+output:
+  pdf_document:
+    toc: false
+    includes:
+       in_header: codecheck-preamble.sty
+  html_document:
+    self_contained: false
+    toc: true
+    toc_float: false
+---
+
+```{r rsetup,eval=TRUE,include=FALSE}
+require(codecheck)
+require(knitr)
+require(rprojroot)
+require(yaml)
+require(xtable)
+require(tibble)
+require(readr)
+options(width=60)
+opts_chunk$set(cache=FALSE)
+
+root = find_root("codecheck.yml")
+```
+
+```{r codecheck_logo, echo=FALSE,results='asis'}
+latex_codecheck_logo()
+```
+
+```{r manifest, eval=TRUE, include=FALSE}
+metadata = codecheck_metadata(root)
+manifest = metadata$manifest
+
+dest_dir = file.path(root, "codecheck", "outputs")
+## Create the outputs directory if missing
+if ( !dir.exists(dest_dir) ) {
+  dir.create(dest_dir)
+}
+
+manifest_df = copy_manifest_files(root, metadata,
+                                  dest_dir, keep_full_path=FALSE)
+```
+
+---
+title: `r paste("CODECHECK certificate", metadata$certificate)`
+subtitle: `r codecheck:::as_latex_url(metadata$report)`
+---
+
+```{r summary_metadata, echo=FALSE, results='asis'}
+latex_summary_of_metadata(metadata)
+```
+
+```{r summary_manifest, echo=FALSE, results='asis'}
+latex_summary_of_manifest(metadata, manifest_df, root)
+```
+
+
+# Summary
+
+This code was straightforward to check. All original code was provided and took minimal computation time to run. The figures were reproduced with the correct features, although were plotted slightly differently from in the ReScience paper.
+
+\clearpage
+
+# CODECHECKER notes
+
+The original code was provided in the GitHub repo here: https://github.com/ReScience-Archives/Detorakis-2017/tree/master/code.
+Code was written in Python 3.6.1 and the README gave explanations for all scripts. 
+I cloned the repo, then ran the code from a Linux terminal using:
+
+```
+$ python3 run_all.py
+```
+
+All figures were reproduced within 15 seconds. I saved the figures into the figures folder in the cloned repo.
+
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\captionsetup[table]{labelformat=addC}
+\captionsetup[figure]{labelformat=addC}
+
+\clearpage
+
+```{r, echo=FALSE, fig.cap=manifest_df[1:3,"comment"]}
+# TODO turn into a loop 
+knitr::include_graphics(manifest_df[1, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[2, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[3, "dest"])
+cat('\n\n')
+```
+
+\clearpage
+
+
+
+## Acknowledgements
+
+CODECHECK is financially supported by the Mozilla foundation.
+
+
+
+<!-- Do not edit below -->
+
+# Citing this document
+
+```{r, results='asis',echo=FALSE}
+cite_certificate(metadata)
+```
+
+# About CODECHECK
+
+This certificate confirms that the codechecker could independently
+reproduce the results of a computational analysis given the data and
+code from a third party.  A CODECHECK does not check whether the
+original computation analysis is correct.  However, as all materials
+required for the reproduction are freely available by following the
+links in this document, the reader can then study for themselves the
+code and data.
+
+
+# About this document
+
+This document was created using [R Markdown](https://rmarkdown.rstudio.com/) using the [`codecheck`](https://github.com/codecheckers/codecheck) R package.
+`make codecheck.pdf` will regenerate the report file.
+
+```{r}
+sessionInfo()
+```
+
+```{r, include=FALSE, eval=FALSE}
+# render this document in RStudio
+rmarkdown::render("codecheck.Rmd", output_format = "pdf_document") 
+```

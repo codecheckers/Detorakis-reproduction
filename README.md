@@ -1,6 +1,25 @@
-# Detorakis-reproduction
-Reproduction of Detorakis, G. 2017. [Re] A Generalized Linear Integrate-and-Fire Neural Model Produces Diverse Spiking Behaviors. ReScience 3, 1, #7.
+### Code repository
 
-The MATLAB .m files in this repository reproduce the figures in the ReScience paper above. Running the Makefile using make all
-will produce the figures PlotExample.png, PlotPhaseSpaceA.png and PlotPhaseSpaceB.png (Figures 1,2 and 3 respectively in the
-ReScience paper).
+This folder contains two Python scripts:
+  *  **neuron_model.py:** This file contains the functions implementing 
+                       the Mihalas Niebur Neuron model (numerical integrator
+                       for the ODEs).  
+  *  **run_all.py:** This scripts runs all the simulations and plots all 
+            the figures used in the article. 
+
+Platform Information:
+---------------------
+
+Platform: linux
+
+Python: 3.6.1 (default, Mar 27 2017, 00:27:06) 
+
+[GCC 6.3.1 20170306]
+
+Machine and architecture x86_64 64bit ELF
+
+NumPy: 1.13.1
+
+SciPy: 0.19.1
+
+Matplotlib: 2.0.2
