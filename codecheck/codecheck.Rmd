@@ -91,10 +91,11 @@ The figures were produced within 15 seconds. Figures 2 and 3 were reproduced and
 
 \clearpage
 
-```{r, echo=FALSE, fig.cap=manifest_df[1:3,"comment"]}
-# TODO turn into a loop 
+```{r, out.width = "80%", echo=FALSE, fig.cap=manifest_df[1,"comment"], fig.align="center"}
 knitr::include_graphics(manifest_df[1, "dest"])
 cat('\n\n')
+```
+```{r, echo=FALSE, fig.cap=manifest_df[2:3,"comment"]}
 knitr::include_graphics(manifest_df[2, "dest"])
 cat('\n\n')
 knitr::include_graphics(manifest_df[3, "dest"])
