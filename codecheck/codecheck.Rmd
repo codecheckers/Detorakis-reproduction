@@ -58,7 +58,7 @@ latex_summary_of_manifest(metadata, manifest_df, root)
 
 # Summary
 
-This code was straightforward to check. All original code was provided and took minimal computation time to run. The figures were reproduced with the correct features, although were plotted slightly differently from in the ReScience paper.
+This code was straightforward to check. All original code was provided and took minimal computation time to run. The figures were reproduced with the correct features and formatted as in the ReScience paper.
 
 \clearpage
 
@@ -66,13 +66,23 @@ This code was straightforward to check. All original code was provided and took 
 
 The original code was provided in the GitHub repo here: https://github.com/ReScience-Archives/Detorakis-2017/tree/master/code.
 Code was written in Python 3.6.1 and the README gave explanations for all scripts. 
-I cloned the repo, then ran the code from a Linux terminal using:
+To run the code I first cloned the repo in a Linux terminal. I then created a conda environment called detorakis_1 in the cloned repo and installed the package versions given in the README:
 
 ```
-$ python3 run_all.py
+$ conda create -n detorakis_1 python=3.6
+$ conda activate detorakis_1
+$ conda install numpy==1.13.1
+$ conda install scipy==0.19.1
+$ conda install matplotlib==2.0.2
 ```
 
-All figures were reproduced within 15 seconds. I saved the figures into the figures folder in the cloned repo.
+I then ran the code using:
+
+```
+$ python run_all.py
+```
+
+The figures were produced within 15 seconds. Figures 2 and 3 were reproduced and plotted in the format given in the ReScience paper. Figure 1 was initially plotted as very squashed compared to the ReScience paper. However when I pressed the minimize button twice the image formatted itself correctly and I could save all three figures into the figures folder.
 
 \setcounter{table}{0}
 \setcounter{figure}{0}
