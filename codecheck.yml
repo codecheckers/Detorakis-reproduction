@@ -7,9 +7,7 @@ paper:
   authors:
     - name: Tiziano Zito
       ORCID: 0000-0001-5891-1702
-  reference: >
-    ReScience (2017) 3, 1, 7
-    http://rescience.github.io/bibliography/detorakis_2017.html
+  reference: https://doi.org/10.5281/zenodo.1003214
 
 manifest:
   - file: figures/figure_1.png
